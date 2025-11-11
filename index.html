@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script type="module">
         import { config } from './js/config.js';
 
@@ -111,14 +111,33 @@
                     <img src="Company Logo.png" alt="LeadBryte Logo" class="h-20 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/80x80?text=Logo';" loading="eager">
                 </div>
                 <div class="hidden md:flex space-x-10">
-                    <a href="#what-we-do" class="text-white hover:text-teal-200 transition-colors font-bold p-4">What we do</a>
-                    <a href="#our-team" class="text-white hover:text-teal-200 transition-colors font-bold p-4">Our Team</a>
-                    <a href="#how-we-work" class="text-white hover:text-teal-200 transition-colors font-bold p-4">How we work</a>
-                    <a href="#portfolio" class="text-white hover:text-teal-200 transition-colors font-bold p-4">Portfolio</a>
-                    <a href="#faqs" class="text-white hover:text-teal-200 transition-colors font-bold p-4">FAQs</a>
-                    <a href="project.html" class="text-white hover:text-teal-200 transition-colors font-bold p-4">Start a Project</a>
+                    <a href="#what-we-do" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="What we do">What we do</a>
+                    <a href="#our-team" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Our Team">Our Team</a>
+                    <a href="#how-we-work" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="How we work">How we work</a>
+                    <a href="#portfolio" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Portfolio">Portfolio</a>
+                    <a href="#faqs" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="FAQs">FAQs</a>
+                    <a href="project.html" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Start a Project">Start a Project</a>
                 </div>
+                <!-- Hamburger for mobile -->
+                <button id="mobileMenuBtn" class="md:hidden flex items-center p-4 text-white focus:outline-none" aria-label="Open menu">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
             </div>
+        </div>
+        <!-- Mobile menu overlay -->
+        <div id="mobileMenu" class="fixed inset-0 z-50 bg-black bg-opacity-80 flex-col items-center justify-center hidden md:hidden">
+          <button id="closeMobileMenu" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">&times;</button>
+          <nav class="flex flex-col space-y-8 mt-24 items-center">
+            <a href="#what-we-do" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">What we do</a>
+            <a href="#our-team" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">Our Team</a>
+            <a href="#how-we-work" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">How we work</a>
+            <a href="#portfolio" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">Portfolio</a>
+            <a href="#faqs" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">FAQs</a>
+            <a href="project.html" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">Start a Project</a>
+          </nav>
+        </div>
         </div>
     </nav>
 
@@ -141,7 +160,7 @@
             <div class="hidden md:block md:w-1/2 relative">
                 <div class="slider-container relative w-full max-w-2xl mx-auto">
                     <div class="slider-wrapper">
-                        <img src="network servers.jpg" alt="Innovation" class="slider-image" loading="eager">
+                        <img src="network servers.jpg" alt="Innovation" class="slider-image" loading="lazy">
                         <img src="server room.jpg" alt="Excellence" class="slider-image" loading="lazy">
                         <img src="team.jpg" alt="Technology" class="slider-image" loading="lazy">
                     </div>
@@ -474,11 +493,11 @@
                         </li>
                         <li class="text-gray-300">
                             <i class="fas fa-phone mr-2"></i>
-                            <span class="contact-phone">L</span>
+                            <span class="contact-phone">+233 55 853 1839</span>
                         </li>
                         <li class="text-gray-300">
                             <i class="fas fa-envelope mr-2"></i>
-                            <span class="contact-email">LeadBryteSolutions@outlook.com</span>
+                            <span class="contact-email">leadBryteSolutions@outlook.com</span>
                         </li>
                     </ul>
                 </div>
@@ -688,6 +707,29 @@
             div.appendChild(link);
             document.body.appendChild(div);
         };
+    </script>
+    <script>
+      // Mobile menu toggle logic
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+      function openMobileMenu() {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMobileMenu() {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      if (mobileMenuBtn && mobileMenu && closeMobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        // Close on link click (for all menu links)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', closeMobileMenu);
+        });
+      }
+      window.closeMobileMenu = closeMobileMenu; // for inline onclick
     </script>
 </body>
 </html>
