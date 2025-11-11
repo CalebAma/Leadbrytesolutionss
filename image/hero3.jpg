@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#2C3E50"/>
+  <path d="M200,300 Q400,100 600,300" stroke="#3498DB" stroke-width="30" fill="none"/>
+  <circle cx="200" cy="300" r="80" fill="#E74C3C" opacity="0.8"/>
+  <circle cx="400" cy="150" r="80" fill="#F1C40F" opacity="0.8"/>
+  <circle cx="600" cy="300" r="80" fill="#2ECC71" opacity="0.8"/>
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Technology</text>
+</svg>

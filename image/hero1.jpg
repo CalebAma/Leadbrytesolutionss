@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#2C3E50"/>
+  <circle cx="400" cy="300" r="150" fill="#3498DB" opacity="0.8"/>
+  <rect x="250" y="200" width="300" height="200" fill="#E74C3C" opacity="0.6"/>
+  <polygon points="400,150 500,350 300,350" fill="#F1C40F"/>
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Innovation</text>
+</svg>

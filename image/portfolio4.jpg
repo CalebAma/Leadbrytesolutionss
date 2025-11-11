@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#34495E"/>
+  <rect x="150" y="150" width="150" height="300" fill="#3498DB" opacity="0.8"/>
+  <rect x="325" y="150" width="150" height="300" fill="#E74C3C" opacity="0.8"/>
+  <rect x="500" y="150" width="150" height="300" fill="#2ECC71" opacity="0.8"/>
+  <circle cx="225" cy="300" r="40" fill="#F1C40F"/>
+  <circle cx="400" cy="300" r="40" fill="#9B59B6"/>
+  <circle cx="575" cy="300" r="40" fill="#1ABC9C"/>
+  <text x="400" y="500" font-family="Arial" font-size="24" fill="white" text-anchor="middle">Data Center</text>
+</svg>

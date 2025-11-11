@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#34495E"/>
+  <circle cx="400" cy="200" r="100" fill="#E67E22" opacity="0.8"/>
+  <rect x="250" y="250" width="300" height="200" fill="#9B59B6" opacity="0.6"/>
+  <polygon points="400,150 450,250 350,250" fill="#F1C40F"/>
+  <circle cx="400" cy="350" r="30" fill="#E74C3C"/>
+  <text x="400" y="500" font-family="Arial" font-size="24" fill="white" text-anchor="middle">Security Systems</text>
+</svg>

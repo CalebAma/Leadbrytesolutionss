@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#34495E"/>
+  <rect x="200" y="150" width="400" height="300" fill="#2ECC71" opacity="0.7"/>
+  <circle cx="400" cy="300" r="120" fill="#9B59B6" opacity="0.8"/>
+  <polygon points="300,200 500,200 400,400" fill="#E67E22"/>
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Excellence</text>
+</svg>
