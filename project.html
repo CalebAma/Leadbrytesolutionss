@@ -140,15 +140,33 @@
                 </div>
                 <!-- Update the navigation links -->
                 <div class="hidden md:flex space-x-10">
-                    <a href="index.html#what-we-do" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="What We Do" aria-label="What We Do">What we do</a>
-                    <a href="index.html#portfolio" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Portfolio" aria-label="Portfolio">Portfolio</a>
-                    <a href="index.html#our-team" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Our Team" aria-label="Our Team">Our Team</a>
-                    <a href="index.html#how-we-work" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="How We Work" aria-label="How We Work">How we work</a>
-                    <a href="index.html#faqs" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="FAQs" aria-label="FAQs">FAQs</a>
-                    <!-- Added "Start a Project" link back -->
-                    <a href="project.html" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Start a Project" aria-label="Start a Project">Start a Project</a>
+                    <a href="index.html#what-we-do" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="What We Do">What we do</a>
+                    <a href="index.html#portfolio" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Portfolio">Portfolio</a>
+                    <a href="index.html#our-team" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Our Team">Our Team</a>
+                    <a href="index.html#how-we-work" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="How We Work">How we work</a>
+                    <a href="index.html#faqs" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="FAQs">FAQs</a>
+                    <a href="project.html" class="text-white hover:text-teal-200 transition-colors font-bold p-4" aria-label="Start a Project">Start a Project</a>
                 </div>
+                <!-- Hamburger for mobile -->
+                <button id="mobileMenuBtn" class="md:hidden flex items-center p-4 text-white focus:outline-none" aria-label="Open menu">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
             </div>
+        </div>
+        <!-- Mobile menu overlay -->
+        <div id="mobileMenu" class="fixed inset-0 z-50 bg-black bg-opacity-80 flex-col items-center justify-center hidden md:hidden">
+          <button id="closeMobileMenu" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">&times;</button>
+          <nav class="flex flex-col space-y-8 mt-24 items-center">
+            <a href="index.html#what-we-do" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">What we do</a>
+            <a href="index.html#portfolio" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">Portfolio</a>
+            <a href="index.html#our-team" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">Our Team</a>
+            <a href="index.html#how-we-work" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">How we work</a>
+            <a href="index.html#faqs" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">FAQs</a>
+            <a href="project.html" class="text-white text-2xl font-bold" onclick="closeMobileMenu()">Start a Project</a>
+          </nav>
+        </div>
         </div>
     </nav>
 
@@ -424,6 +442,29 @@ m" aria-label="Back to Hoe
                 console.warn("WhatsApp number not configured. WhatsApp chat widget will not be displayed.");
             }
         };
+    </script>
+    <script>
+      // Mobile menu toggle logic
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+      function openMobileMenu() {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMobileMenu() {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      if (mobileMenuBtn && mobileMenu && closeMobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        // Close on link click (for all menu links)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', closeMobileMenu);
+        });
+      }
+      window.closeMobileMenu = closeMobileMenu; // for inline onclick
     </script>
 </body>
 </html>
