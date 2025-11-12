@@ -31,16 +31,12 @@
     <!-- Favicon link added here -->
     <link rel="icon" type="image/png" href="logo.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="src/output.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Tailwind CSS CDN -->
+    <script src="dateUpdate.min.js"></script>
     <script src="https://cdn.tailwindcss.com" defer></script>
-    <script type="module">
-        import { config } from './js/config.js';
-
-        // Initialize configuration when DOM is loaded
-        document.addEventListener('DOMContentLoaded', async () => {
-            await config.init();
-            
+    <script type="module" src="js/config.min.js"></script>
             // Update site title
             document.getElementById('site-title').textContent = config.get('SITE_NAME');
 
@@ -228,7 +224,7 @@
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
                             <img src="Mr. Baffoe.jpg" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+1';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">Ebenezer S. Baffoe</h4>
-                            <p class="text-blue-300 text-xs">CEO | Founder</p>
+                            <p class="text-blue-300 text-xs">CEO</p>
                         </div>
                     </div>
 
@@ -246,7 +242,7 @@
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
                             <img src="Stewart.JPG" alt="Team Member" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+3';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">David A. R-Stewart</h4>
-                            <p class="text-blue-300 text-xs">Network Manager</p>
+                            <p class="text-blue-300 text-xs">Data Analyst</p>
                         </div>
                     </div>
 
@@ -255,7 +251,7 @@
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
                             <img src="forson.jpg" alt="Team Member" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+4';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">Edward Forson</h4>
-                            <p class="text-blue-300 text-xs">IT Hardware Manager</p>
+                            <p class="text-blue-300 text-xs">Managing Director</p>
                         </div>
                     </div>
 
