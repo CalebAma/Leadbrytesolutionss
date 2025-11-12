@@ -37,18 +37,18 @@
     <script src="dateUpdate.min.js"></script>
     <script src="https://cdn.tailwindcss.com" defer></script>
     <script type="module" src="js/config.min.js"></script>
-            // Update site title
-            document.getElementById('site-title').textContent = config.get('SITE_NAME');
-
-            // Update social media links
-            document.querySelector('.social-facebook').href = config.get('FACEBOOK_URL');
-            document.querySelector('.social-twitter').href = config.get('TWITTER_URL');
-            document.querySelector('.social-linkedin').href = config.get('LINKEDIN_URL');
-            document.querySelector('.social-instagram').href = config.get('INSTAGRAM_URL');
-
-            // Update WhatsApp number for the chat widget
-            window.WHATSAPP_NUMBER = config.get('WHATSAPP_NUMBER');
-        });
+<script type="module">
+  import { config } from './js/config.min.js';
+  document.addEventListener('DOMContentLoaded', async () => {
+    await config.init();
+    document.getElementById('site-title').textContent = config.get('SITE_NAME');
+    document.querySelector('.social-facebook').href = config.get('FACEBOOK_URL');
+    document.querySelector('.social-twitter').href = config.get('TWITTER_URL');
+    document.querySelector('.social-linkedin').href = config.get('LINKEDIN_URL');
+    document.querySelector('.social-instagram').href = config.get('INSTAGRAM_URL');
+    window.WHATSAPP_NUMBER = config.get('WHATSAPP_NUMBER');
+  });
+</script>
     </script>
     <script>
         tailwind.config = {
