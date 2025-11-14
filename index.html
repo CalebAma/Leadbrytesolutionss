@@ -232,7 +232,7 @@
                     <!-- Team Member 2 -->
                     <div class="group">
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <img src="forson.jpg" alt="Team Member" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+2';" loading="lazy">
+                            <img src="image/forson.png" alt="Team Member" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+2';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">Edward Forson</h4>
                             <p class="text-blue-300 text-xs">Managing Director</p>
                         </div>
@@ -242,7 +242,7 @@
                     <div class="group">
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
                             <img src="image/Steward.png" alt="Team Member" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+3';" loading="lazy">
-                            <h4 class="text-white font-semibold text-sm">David A. R-Stewart</h4>
+                            <h4 class="text-white font-semibold text-sm">David A. R-Steward</h4>
                             <p class="text-blue-300 text-xs">Data Analyst</p>
                         </div>
                     </div>
@@ -252,7 +252,7 @@
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
                             <img src="caleb.png" alt="Team Member" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+4';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">Caleb A. Amarh</h4>
-                            <p class="text-blue-300 text-xs">Full Stack Developer/p>
+                            <p class="text-blue-300 text-xs">Full Stack Developer</p>
                         </div>
                     </div>
 
@@ -262,18 +262,16 @@
                             <img src="image/Abraquah.png" alt="Emmanuel Abraquah" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+5';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">Emmanuel Abraquah</h4>
                             <p class="text-blue-300 text-xs">Full Stack Developer</p>
+                            
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team Member 6 -->
+                    
+                    <!-- Team Member 6: Updated to Alhassan Ben Salifu -->
                     <div class="group">
                         <div class="backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300">
-                            <img src="image/Alhassan.png" alt="Alhassan Ben Salifuass="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+5';" loading="lazy">
+                            <img src="image/Alhassan.png" alt="Alhassan Ben Salifu" class="w-full h-40 object-cover rounded-xl mb-4" onerror="this.onerror=null;this.src='https://placehold.co/160x160?text=Member+6';" loading="lazy">
                             <h4 class="text-white font-semibold text-sm">Alhassan Ben Salifu</h4>
-                            <p class="text-blue-300 text-xs">Full Stack Developer</p>
+                            <p class="text-blue-300 text-xs">Project Manager</p>
                         </div>
                     </div>
                 </div>
@@ -627,7 +625,8 @@
             button.addEventListener('click', (event) => {
                 const step = event.currentTarget.dataset.step;
                 console.log(`'Read more' button clicked for step: ${step}`);
-                alert(`You clicked 'Read more' for the "${step}" step! (Check console for more details)`);
+                // IMPORTANT: Removed alert() as per instructions.
+                console.log(`User clicked 'Read more' for the "${step}" step.`);
             });
         });
 
@@ -644,26 +643,33 @@
 
             if (email) {
                 try {
-                    const result = await subscribeToNewsletter(email);
-                    
-                    newsletterMessageDiv.textContent = result.message;
-                    newsletterMessageDiv.classList.remove('hidden');
-                    
-                    if (result.success) {
-                        newsletterMessageDiv.classList.add('bg-green-100', 'text-green-800');
-                        newsletterMessageDiv.classList.remove('bg-red-100', 'text-red-800');
-                        newsletterEmailInput.value = '';
-                    } else {
-                        newsletterMessageDiv.classList.add('bg-red-100', 'text-red-800');
-                        newsletterMessageDiv.classList.remove('bg-green-100', 'text-green-800');
-                    }
+                    // Check if subscribeToNewsletter function exists before calling
+                    if (typeof subscribeToNewsletter === 'function') {
+                        const result = await subscribeToNewsletter(email);
+                        
+                        newsletterMessageDiv.textContent = result.message;
+                        newsletterMessageDiv.classList.remove('hidden');
+                        
+                        if (result.success) {
+                            newsletterMessageDiv.classList.add('bg-green-100', 'text-green-800');
+                            newsletterMessageDiv.classList.remove('bg-red-100', 'text-red-800');
+                            newsletterEmailInput.value = '';
+                        } else {
+                            newsletterMessageDiv.classList.add('bg-red-100', 'text-red-800');
+                            newsletterMessageDiv.classList.remove('bg-green-100', 'text-green-800');
+                        }
 
-                    setTimeout(() => {
-                        newsletterMessageDiv.classList.add('hidden');
-                        newsletterMessageDiv.classList.remove('bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
-                    }, 3000);
+                        setTimeout(() => {
+                            newsletterMessageDiv.classList.add('hidden');
+                            newsletterMessageDiv.classList.remove('bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+                        }, 3000);
+                    } else {
+                        newsletterMessageDiv.textContent = 'Subscription function not loaded. Check Firebase config.';
+                        newsletterMessageDiv.classList.remove('hidden');
+                        newsletterMessageDiv.classList.add('bg-red-100', 'text-red-800');
+                    }
                 } catch (error) {
-                    console.error('Error:', error);
+                    console.error('Error during newsletter subscription:', error);
                     newsletterMessageDiv.textContent = 'An error occurred. Please try again later.';
                     newsletterMessageDiv.classList.remove('hidden');
                     newsletterMessageDiv.classList.add('bg-red-100', 'text-red-800');
@@ -686,7 +692,9 @@
 
             // Create the WhatsApp link
             var link = document.createElement('a');
-            link.href = `https://wa.me/${window.WHATSAPP_NUMBER}`;
+            // Check if WHATSAPP_NUMBER is globally defined by the config script
+            const whatsappNumber = window.WHATSAPP_NUMBER || '+233558531839'; // Fallback number
+            link.href = `https://wa.me/${whatsappNumber}`;
             link.target = '_blank';
             link.style.display = 'flex';
             link.style.alignItems = 'center';
