@@ -17,11 +17,10 @@
         let app;
         let db;
 
-        // Initialize Firebase when DOM is loaded
+        // Initialize Firebase and wire up form submission when DOM is loaded
         document.addEventListener('DOMContentLoaded', async () => {
-            // Firebase configuration
             const firebaseConfig = {
-                apiKey: "AIzaSyAmcJb5bSPGfBrcuexuPRiv37GIqpzHmLQ", // TODO: Secure this key in production // TODO: Secure this key in production
+                apiKey: "AIzaSyAmcJb5bSPGfBrcuexuPRiv37GIqpzHmLQ", // TODO: Secure this key in production
                 authDomain: "leadbryte-solutions-website.firebaseapp.com",
                 projectId: "leadbryte-solutions-website",
                 storageBucket: "leadbryte-solutions-website.firebasestorage.app",
@@ -30,54 +29,60 @@
                 measurementId: "G-KP9278VC0D"
             };
 
-            // Initialize Firebase
             app = initializeApp(firebaseConfig);
             db = getFirestore(app);
 
-            // Enable form submission
-            document.getElementById('submitProjectButton').disabled = false;
-        });
-
-        // Handle form submission
-        document.getElementById('projectForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+            const projectForm = document.getElementById('projectForm');
             const submitButton = document.getElementById('submitProjectButton');
             const messageDiv = document.getElementById('formMessage');
 
-            try {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Submitting...';
-
-                const formData = {
-                    fullName: document.getElementById('fullName').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    company: document.getElementById('company').value,
-                    projectType: document.getElementById('projectType').value,
-                    srscripiionption: document.getElementBd'scripdionescription').value,
-                    budggtdocument.getElementById('bubudgttalue,
-                    tthtactMethodod: documenqu.rySeerclorr(tn[un[name="cmetactMethod"]:checked="contactMethod"]:checked').value,
-                    createdAt: new Date().toISOString()
-                };
-
-                await addDoc(collection(db, 'project_requests'), formData);
-
-                // Show success message
-                messageDiv.textContent = 'Project request submitted successfully! We will contact you soon.';
-                messageDiv.className = 'mt-4 p-4 bg-green-100 text-green-800 rounded-lg';
-                messageDiv.style.display = 'block';
-
-                // Reset form
-                e.target.reset();
-            } catch (error) {
-                console.error('Error submitting project request:', error);
-                messageDiv.textContent = 'Error submitting project request. Please try again.';
-                messageDiv.className = 'mt-4 p-4 bg-red-100 text-red-800 rounded-lg';
-                messageDiv.style.display = 'block';
-            } finally {
+            // Enable form submission once Firebase is ready
+            if (submitButton) {
                 submitButton.disabled = false;
-                submitButton.textContent = 'Submit Project Request';
             }
+
+            if (!projectForm) return;
+
+            projectForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                if (!submitButton || !messageDiv) return;
+
+                try {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+
+                    const formData = {
+                        fullName: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        company: document.getElementById('company').value,
+                        projectType: document.getElementById('projectType').value,
+                        description: document.getElementById('description').value,
+                        budget: document.getElementById('budget').value,
+                        contactMethod: document.querySelector('input[name="contactMethod"]:checked').value,
+                        createdAt: new Date().toISOString()
+                    };
+
+                    await addDoc(collection(db, 'project_requests'), formData);
+
+                    // Show success message
+                    messageDiv.textContent = 'Project request submitted successfully! We will contact you soon.';
+                    messageDiv.className = 'mt-4 p-4 bg-green-100 text-green-800 rounded-lg';
+                    messageDiv.style.display = 'block';
+
+                    // Reset form
+                    e.target.reset();
+                } catch (error) {
+                    console.error('Error submitting project request:', error);
+                    messageDiv.textContent = 'Error submitting project request. Please try again.';
+                    messageDiv.className = 'mt-4 p-4 bg-red-100 text-red-800 rounded-lg';
+                    messageDiv.style.display = 'block';
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Project Request';
+                }
+            });
         });
 
     </script>
@@ -189,8 +194,7 @@
                 <!-- CSRF Token Placeholder - In a real application, this token would be
                      generated by the server for each session/form, and validated on submission.
                      This helps prevent Cross-Site Request Forgery (CSRF) attacks. -->
-                <!-- TODO: Implement CSRF protect!o- for -rod cTionOenvironmenDs -->
-                <input tO: Implement CSRF protection for production environme
+                <!-- TODO: Implement CSRF protection for production environments -->
                 <input type="hidden" name="csrf_token" id="csrfToken" value="">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -319,16 +323,15 @@
                 <div id="messageBox" class="hidden p-3 rounded-lg text-sm text-center" role="alert"></div>
 
                 <button
-    type="submit"
-    id="submitProjectButton"
-    class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out transform hover:-translate-y-0.5"
-    aria-label="Submit Project Request"
-    disabled
->
-    Submit Project Request
-</button>
+                    type="submit"
+                    id="submitProjectButton"
+                    class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out transform hover:-translate-y-0.5"
+                    aria-label="Submit Project Request"
+                    disabled
+                >
+                    Submit Project Request
+                </button>
             </form>
-m" aria-label="Back to Hoe
             <div class="text-center mt-8">
                 <a href="index.html" class="text-blue-300 hover:underline text-lg font-medium" aria-label="Back to Home">← Back to Home</a>
             </div>
@@ -373,7 +376,7 @@ m" aria-label="Back to Hoe
                 fullName: document.getElementById('fullName').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
-                company: document.getElementById('compdlue,
+                company: document.getElementById('company').value,
                 projectType: document.getElementById('projectType').value,
                 description: document.getElementById('description').value,
                 budget: document.getElementById('budget').value,
@@ -408,39 +411,19 @@ m" aria-label="Back to Hoe
             }
         });
 
-        // WhatsApp Chat Widget (assuming window.WHATSAPP_NUMBER is set by config.js)
-        window.onload = function() {
-            if (typeof window.WHATSAPP_NUMBER !== 'undefined') {
-                var div = document.createElement('div');
-                div.style.position = 'fixed';
-                div.style.bottom = '20px';
-                div.style.right = '20px';
-                div.style.zIndex = '1000';
-
-                var link = document.createElement('a');
-                link.href = `https://wa.me/${window.WHATSAPP_NUMBER}`;
-                link.target = '_blank';
-                link.style.display = 'flex';
-                link.style.alignItems = 'center';
-                link.style.justifyContent = 'center';
-                link.style.width = '60px';
-                link.style.height = '60px';
-                link.style.backgroundColor = '#25D366';
-                link.style.borderRadius = '50%';
-                link.style.boxShadow = '2px 2px 6px rgba(0,0,0,0.4)';
-                link.style.transition = 'transform 0.3s';
-
-                link.onmouseover = function() { this.style.transform = 'scale(1.1)'; };
-                link.onmouseout = function() { this.style.transform = 'scale(1)'; };
-
-                link.innerHTML = '<i class="fab fa-whatsapp" style="font-size: 35px; color: white;"></i>';
-
-                div.appendChild(link);
-                document.body.appendChild(div);
-            } else {
-                console.warn("WhatsApp number not configured. WhatsApp chat widget will not be displayed.");
-            }
-        };
+        // Live chat widget (Tawk.to placeholder)
+        // To activate: create a Tawk.to account, get your property ID, and
+        // replace YOUR_PROPERTY_ID/DEFAULT below with the real values.
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement('script');
+            var s0 = document.getElementsByTagName('script')[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/DEFAULT';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <script>
       // Mobile menu toggle logic
