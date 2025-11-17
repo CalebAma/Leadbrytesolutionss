@@ -692,43 +692,58 @@
                 newsletterMessageDiv.classList.add('bg-red-100', 'text-red-800');
             }
         });
-
-        // WhatsApp Chat Widget
-        window.onload = function() {
-            // Create the chat widget container
-            var div = document.createElement('div');
-            div.style.position = 'fixed';
-            div.style.bottom = '20px';
-            div.style.right = '20px';
-            div.style.zIndex = '1000';
-
-            // Create the WhatsApp link
-            var link = document.createElement('a');
-            // Check if WHATSAPP_NUMBER is globally defined by the config script
-            const whatsappNumber = window.WHATSAPP_NUMBER || '+233558531839'; // Fallback number
-            link.href = `https://wa.me/${whatsappNumber}`;
-            link.target = '_blank';
-            link.style.display = 'flex';
-            link.style.alignItems = 'center';
-            link.style.justifyContent = 'center';
-            link.style.width = '60px';
-            link.style.height = '60px';
-            link.style.backgroundColor = '#25D366';
-            link.style.borderRadius = '50%';
-            link.style.boxShadow = '2px 2px 6px rgba(0,0,0,0.4)';
-            link.style.transition = 'transform 0.3s';
-
-            // Add hover effect
-            link.onmouseover = function() { this.style.transform = 'scale(1.1)'; };
-            link.onmouseout = function() { this.style.transform = 'scale(1)'; };
-
-            // Add WhatsApp icon
-            link.innerHTML = '<i class="fab fa-whatsapp" style="font-size: 35px; color: white;"></i>';
-
-            // Assemble and add to page
-            div.appendChild(link);
-            document.body.appendChild(div);
-        };
+        
+        // WhatsApp Chat Widget (temporarily disabled)
+        // window.onload = function() {
+        //     // Create the chat widget container
+        //     var div = document.createElement('div');
+        //     div.style.position = 'fixed';
+        //     div.style.bottom = '20px';
+        //     div.style.right = '20px';
+        //     div.style.zIndex = '1000';
+        //
+        //     // Create the WhatsApp link
+        //     var link = document.createElement('a');
+        //     // Check if WHATSAPP_NUMBER is globally defined by the config script
+        //     const whatsappNumber = window.WHATSAPP_NUMBER || '+233558531839'; // Fallback number
+        //     link.href = `https://wa.me/${whatsappNumber}`;
+        //     link.target = '_blank';
+        //     link.style.display = 'flex';
+        //     link.style.alignItems = 'center';
+        //     link.style.justifyContent = 'center';
+        //     link.style.width = '60px';
+        //     link.style.height = '60px';
+        //     link.style.backgroundColor = '#25D366';
+        //     link.style.borderRadius = '50%';
+        //     link.style.boxShadow = '2px 2px 6px rgba(0,0,0,0.4)';
+        //     link.style.transition = 'transform 0.3s';
+        //
+        //     // Add hover effect
+        //     link.onmouseover = function() { this.style.transform = 'scale(1.1)'; };
+        //     link.onmouseout = function() { this.style.transform = 'scale(1)'; };
+        //
+        //     // Add WhatsApp icon
+        //     link.innerHTML = '<i class="fab fa-whatsapp" style="font-size: 35px; color: white;"></i>';
+        //
+        //     // Assemble and add to page
+        //     div.appendChild(link);
+        //     document.body.appendChild(div);
+        // };
+    </script>
+    <script>
+        // Live chat widget (Tawk.to placeholder)
+        // To activate: create a Tawk.to account, get your property ID, and
+        // replace YOUR_PROPERTY_ID/DEFAULT below with the real values.
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement('script');
+            var s0 = document.getElementsByTagName('script')[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/DEFAULT';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <script>
       // Mobile menu toggle logic
