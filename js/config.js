@@ -22,6 +22,16 @@ const loadEnvVariables = async () => {
     }
 };
 
+// Default non-sensitive configuration values for when /.env is missing or incomplete
+const defaultConfig = {
+    SITE_NAME: 'LeadBryteSolutions',
+    FACEBOOK_URL: '#',
+    TWITTER_URL: '#',
+    LINKEDIN_URL: '#',
+    INSTAGRAM_URL: '#',
+    WHATSAPP_NUMBER: '+233558531839'
+};
+
 // Export environment variables
 export const config = {
     env: null,
@@ -29,7 +39,10 @@ export const config = {
         this.env = await loadEnvVariables();
     },
     get(key) {
-        return this.env?.[key] ?? null;
+        // Prefer value from loaded env vars, otherwise fall back to defaults
+        return (this.env && this.env[key] !== undefined)
+            ? this.env[key]
+            : (defaultConfig[key] ?? null);
     }
 };
 

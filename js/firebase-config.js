@@ -1,3 +1,7 @@
+// Initialize Firebase SDK imports FIRST (required for ES modules)
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAmcJb5bSPGfBrcuexuPRiv37GIqpzHmLQ",
@@ -10,9 +14,6 @@ const firebaseConfig = {
   };
 
 // Initialize Firebase
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
