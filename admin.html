@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeadBryte Admin Dashboard</title>
+  <link rel="icon" type="image/png" href="logo.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-blue-700 to-blue-900 min-h-screen font-poppins text-white" style="background: linear-gradient(to bottom, #0066cc, #003366) !important;">
+  <!-- Admin Navigation -->
+  <nav class="p-6 lg:px-16 sticky top-0 z-50">
+    <div class="container mx-auto px-6 lg:px-16 max-w-7xl">
+      <div class="flex justify-between items-center backdrop-blur-md bg-white/10 rounded-2xl p-4 shadow-lg">
+        <div class="flex items-center space-x-3">
+          <a href="index.html" aria-label="Go to homepage">
+            <img src="Company Logo.png" alt="LeadBryte Logo" class="h-14 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/80x80?text=Logo';" loading="eager">
+          </a>
+          <div>
+            <p class="text-xs uppercase text-gray-200 tracking-wide">LeadBryte Solutions</p>
+            <h1 class="text-xl font-semibold">Admin Dashboard</h1>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4 text-sm">
+          <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">Environment: <span id="env-label">Loading...</span></span>
+          <a href="project.html" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition">View Site</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-6 lg:px-16 max-w-7xl py-10 space-y-10">
+    <!-- High-level stats -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="backdrop-blur-md bg-white/10 rounded-2xl p-6 shadow-lg">
+        <p class="text-sm text-gray-200 mb-1">Project Requests</p>
+        <p class="text-3xl font-bold" id="stat-project-requests">0</p>
+        <p class="text-xs text-gray-300 mt-2" id="stat-project-requests-sub">Loading...</p>
+      </div>
+      <div class="backdrop-blur-md bg-white/10 rounded-2xl p-6 shadow-lg">
+        <p class="text-sm text-gray-200 mb-1">Newsletter Subscribers</p>
+        <p class="text-3xl font-bold" id="stat-newsletter">0</p>
+        <p class="text-xs text-gray-300 mt-2" id="stat-newsletter-sub">Loading...</p>
+      </div>
+      <div class="backdrop-blur-md bg-white/10 rounded-2xl p-6 shadow-lg">
+        <p class="text-sm text-gray-200 mb-1">Contact Messages</p>
+        <p class="text-3xl font-bold" id="stat-contact">0</p>
+        <p class="text-xs text-gray-300 mt-2" id="stat-contact-sub">Loading...</p>
+      </div>
+    </section>
+
+    <!-- Project Requests Table -->
+    <section id="projects" class="backdrop-blur-md bg-white/10 rounded-2xl p-6 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">Project Requests</h2>
+        <span class="text-xs text-gray-200" id="projects-count-label">Loading...</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-white/10">
+            <tr>
+              <th class="px-4 py-2 text-left">Date</th>
+              <th class="px-4 py-2 text-left">Name</th>
+              <th class="px-4 py-2 text-left">Email</th>
+              <th class="px-4 py-2 text-left">Project Type</th>
+              <th class="px-4 py-2 text-left">Budget</th>
+              <th class="px-4 py-2 text-left">Preferred Contact</th>
+            </tr>
+          </thead>
+          <tbody id="projects-body" class="divide-y divide-white/10">
+            <tr><td colspan="6" class="px-4 py-4 text-center text-gray-300">Loading project requests...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Contact Messages Table -->
+    <section id="contacts" class="backdrop-blur-md bg-white/10 rounded-2xl p-6 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">Contact Messages</h2>
+        <span class="text-xs text-gray-200" id="contacts-count-label">Loading...</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-white/10">
+            <tr>
+              <th class="px-4 py-2 text-left">Date</th>
+              <th class="px-4 py-2 text-left">Name</th>
+              <th class="px-4 py-2 text-left">Email</th>
+              <th class="px-4 py-2 text-left">Subject</th>
+              <th class="px-4 py-2 text-left">Message</th>
+            </tr>
+          </thead>
+          <tbody id="contacts-body" class="divide-y divide-white/10">
+            <tr><td colspan="5" class="px-4 py-4 text-center text-gray-300">Loading contact messages...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Newsletter Subscribers Table -->
+    <section id="newsletter" class="backdrop-blur-md bg-white/10 rounded-2xl p-6 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl font-semibold">Newsletter Subscribers</h2>
+        <span class="text-xs text-gray-200" id="newsletter-count-label">Loading...</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-white/10">
+            <tr>
+              <th class="px-4 py-2 text-left">Date</th>
+              <th class="px-4 py-2 text-left">Email</th>
+            </tr>
+          </thead>
+          <tbody id="newsletter-body" class="divide-y divide-white/10">
+            <tr><td colspan="2" class="px-4 py-4 text-center text-gray-300">Loading newsletter subscribers...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmcJb5bSPGfBrcuexuPRiv37GIqpzHmLQ",
+      authDomain: "leadbryte-solutions-website.firebaseapp.com",
+      projectId: "leadbryte-solutions-website",
+      storageBucket: "leadbryte-solutions-website.firebasestorage.app",
+      messagingSenderId: "418567681709",
+      appId: "1:418567681709:web:991fd66c8ef646e1d53824",
+      measurementId: "G-KP9278VC0D"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const statProjectRequests = document.getElementById('stat-project-requests');
+    const statProjectRequestsSub = document.getElementById('stat-project-requests-sub');
+    const statNewsletter = document.getElementById('stat-newsletter');
+    const statNewsletterSub = document.getElementById('stat-newsletter-sub');
+    const statContact = document.getElementById('stat-contact');
+    const statContactSub = document.getElementById('stat-contact-sub');
+
+    const projectsBody = document.getElementById('projects-body');
+    const projectsCountLabel = document.getElementById('projects-count-label');
+
+    const contactsBody = document.getElementById('contacts-body');
+    const contactsCountLabel = document.getElementById('contacts-count-label');
+
+    const newsletterBody = document.getElementById('newsletter-body');
+    const newsletterCountLabel = document.getElementById('newsletter-count-label');
+
+    const envLabel = document.getElementById('env-label');
+    envLabel.textContent = window.location.hostname === 'localhost' ? 'Local' : 'Production';
+
+    function formatDate(isoString) {
+      if (!isoString) return '-';
+      const d = new Date(isoString);
+      if (Number.isNaN(d.getTime())) return '-';
+      return d.toLocaleString();
+    }
+
+    async function loadProjectRequests() {
+      try {
+        const snapshot = await getDocs(collection(db, 'project_requests'));
+        const items = [];
+        snapshot.forEach(doc => items.push(doc.data()));
+
+        statProjectRequests.textContent = items.length;
+        projectsCountLabel.textContent = items.length + ' project request(s)';
+        statProjectRequestsSub.textContent = items.length ? 'Latest: ' + formatDate(items[items.length - 1].createdAt) : 'No project requests yet.';
+
+        if (!items.length) {
+          projectsBody.innerHTML = '<tr><td colspan="6" class="px-4 py-4 text-center text-gray-300">No project requests yet.</td></tr>';
+          return;
+        }
+
+        projectsBody.innerHTML = items
+          .sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''))
+          .map(item => `
+            <tr>
+              <td class="px-4 py-2 align-top">${formatDate(item.createdAt)}</td>
+              <td class="px-4 py-2 align-top">${item.fullName || '-'}</td>
+              <td class="px-4 py-2 align-top">${item.email || '-'}</td>
+              <td class="px-4 py-2 align-top">${item.projectType || '-'}</td>
+              <td class="px-4 py-2 align-top">${item.budget || '-'}</td>
+              <td class="px-4 py-2 align-top">${item.contactMethod || '-'}</td>
+            </tr>
+          `)
+          .join('');
+      } catch (error) {
+        console.error('Error loading project requests:', error);
+        projectsBody.innerHTML = '<tr><td colspan="6" class="px-4 py-4 text-center text-red-200">Error loading project requests. Check console.</td></tr>';
+      }
+    }
+
+    async function loadContactMessages() {
+      try {
+        const snapshot = await getDocs(collection(db, 'contact_messages'));
+        const items = [];
+        snapshot.forEach(doc => items.push(doc.data()));
+
+        statContact.textContent = items.length;
+        contactsCountLabel.textContent = items.length + ' contact message(s)';
+        statContactSub.textContent = items.length ? 'Latest: ' + formatDate(items[items.length - 1].createdAt) : 'No contact messages yet.';
+
+        if (!items.length) {
+          contactsBody.innerHTML = '<tr><td colspan="5" class="px-4 py-4 text-center text-gray-300">No contact messages yet.</td></tr>';
+          return;
+        }
+
+        contactsBody.innerHTML = items
+          .sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''))
+          .map(item => `
+            <tr>
+              <td class="px-4 py-2 align-top">${formatDate(item.createdAt)}</td>
+              <td class="px-4 py-2 align-top">${item.name || '-'}</td>
+              <td class="px-4 py-2 align-top">${item.email || '-'}</td>
+              <td class="px-4 py-2 align-top">${item.subject || '-'}</td>
+              <td class="px-4 py-2 align-top max-w-xs whitespace-pre-wrap">${item.message || '-'}</td>
+            </tr>
+          `)
+          .join('');
+      } catch (error) {
+        console.error('Error loading contact messages:', error);
+        contactsBody.innerHTML = '<tr><td colspan="5" class="px-4 py-4 text-center text-red-200">Error loading contact messages. Check console.</td></tr>';
+      }
+    }
+
+    async function loadNewsletterSubscribers() {
+      try {
+        const snapshot = await getDocs(collection(db, 'newsletter_subscribers'));
+        const items = [];
+        snapshot.forEach(doc => items.push(doc.data()));
+
+        statNewsletter.textContent = items.length;
+        newsletterCountLabel.textContent = items.length + ' subscriber(s)';
+        statNewsletterSub.textContent = items.length ? 'Latest: ' + formatDate(items[items.length - 1].createdAt) : 'No subscribers yet.';
+
+        if (!items.length) {
+          newsletterBody.innerHTML = '<tr><td colspan="2" class="px-4 py-4 text-center text-gray-300">No subscribers yet.</td></tr>';
+          return;
+        }
+
+        newsletterBody.innerHTML = items
+          .sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''))
+          .map(item => `
+            <tr>
+              <td class="px-4 py-2 align-top">${formatDate(item.createdAt)}</td>
+              <td class="px-4 py-2 align-top">${item.email || '-'}</td>
+            </tr>
+          `)
+          .join('');
+      } catch (error) {
+        console.error('Error loading newsletter subscribers:', error);
+        newsletterBody.innerHTML = '<tr><td colspan="2" class="px-4 py-4 text-center text-red-200">Error loading subscribers. Check console.</td></tr>';
+      }
+    }
+
+    (async function init() {
+      await Promise.all([
+        loadProjectRequests(),
+        loadContactMessages(),
+        loadNewsletterSubscribers()
+      ]);
+    })();
+  </script>
+</body>
+</html>
