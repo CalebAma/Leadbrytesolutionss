@@ -730,17 +730,14 @@
         //     document.body.appendChild(div);
         // };
     </script>
-    <script type="text/javascript">
-        // Live chat widget (Crisp)
-        window.$crisp = [];
-        window.CRISP_WEBSITE_ID = "64e53434-cad0-4f72-badd-612c93b2cb29";
-        (function() {
-            const d = document;
-            const s = d.createElement("script");
-            s.src = "https://client.crisp.chat/l.js";
-            s.async = 1;
-            d.getElementsByTagName("head")[0].appendChild(s);
-        })();
+    <!-- Tidio Live Chat -->
+    <script>
+      (function() {
+        const tidioScript = document.createElement('script');
+        tidioScript.src = "//code.tidio.co/bzggapxy1jcnandngyhayzgrmcnpcf9m.js";
+        tidioScript.async = true;
+        document.body.appendChild(tidioScript);
+      })();
     </script>
     <script>
       // Mobile menu toggle logic
