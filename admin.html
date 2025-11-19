@@ -284,5 +284,30 @@
       ]);
     })();
   </script>
+<!-- Netlify Identity Widget -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function(user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function() {
+          document.location.href = "/admin.html";
+        });
+      }
+    });
+  }
+  window.addEventListener("DOMContentLoaded", function() {
+    netlifyIdentity.init();
+    netlifyIdentity.on("init", function(user) {
+      if (!user) {
+        netlifyIdentity.open();
+      }
+    });
+    netlifyIdentity.on("logout", function() {
+      document.location.href = "/";
+    });
+  });
+</script>
+<button onclick="netlifyIdentity.logout()" style="position:fixed;top:1rem;right:1rem;z-index:9999" class="px-4 py-2 bg-red-600 rounded">Logout</button>
 </body>
 </html>
